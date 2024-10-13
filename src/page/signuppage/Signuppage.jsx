@@ -74,7 +74,7 @@ const Signuppage = () => {
       </div>
       <div className={onSuccess} onClick={onClose}>
         <Alert severity="success">
-        Your account has been created.</Alert>
+        Your account has been created successfully</Alert>
       </div>
       <div className="signupForm">
         <form onSubmit={handleOnSubmit} className="form-signup">
