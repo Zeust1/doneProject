@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, createContext } from "react";
+import { useState, useRef } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -8,13 +8,14 @@ import Logo from "../public/logo.png";
 import Usericon from "../public/circle-user.svg";
 import Carticon from "../public/shopping-cart-add.svg";
 import Locationicon from "../public/location.png";
-import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
+
 
 import Shopaddress from "./components/shopaddress/Shopaddress";
 import Homepage from "./page/homepage/Homepage";
 import Signinpage from "./page/signinpage/Signinpage";
 import Profile from "./page/profile/Profile";
 import Signuppage from "./page/signuppage/Signuppage";
+import Onloading from "../src/components/modalonloading/Onloading";
 
 
 import Menu from "./page/Menu/menu"
@@ -24,10 +25,14 @@ import CheckoutModal from"../src/components/CheckoutModal/CheckoutModal.jsx";
 
 
 import Shoplocation from "../src/api/shoplocation.json";
+import api from "./api/userapi.js";
 
 
 
 function App() {
+
+  const childRef = useRef();
+
   const [userLogin, setUserLogin] = useState("");
   const location = useLocation().pathname;
   const navigate = useNavigate();
@@ -67,10 +72,23 @@ function App() {
   }
 
 
-  const signout = () => {
-    setUserLogin("");
-    navigate("/")
+  const onLoading = () => {
+    childRef.current.onOpen();
   };
+
+  const onClose = () => {
+    childRef.current.onClose();
+  };
+
+  const signout = async () => {
+    onLoading();
+    setUserLogin("");
+    const data = await api();
+    navigate("/")
+    onClose()
+  };
+
+
 
 
   // tâm..................................................
@@ -129,7 +147,7 @@ function App() {
             userLogin &&           
             <div className="infoUser">
               <Link to="/profile">Welcome, {userLogin.username}</Link>
-              <i class="fa-solid fa-certificate fa-2xl"><p>{`${userLogin.level * 10}`}%</p></i>
+              <i className="fa-solid fa-certificate fa-2xl"><p>{`${userLogin.level * 10}`}%</p></i>
             </div>
           }
 
@@ -239,6 +257,7 @@ function App() {
       <div className="Footer">
         <Footer />
       </div>
+      <Onloading ref={childRef} />
     </div>
   );
 }

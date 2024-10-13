@@ -18,8 +18,8 @@ const style = {
 
 const Onloading = (props, ref) => {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpen = () => setTimeout(setOpen(true), 3000);
+  const handleClose = () => setTimeout(setOpen(false), 3000);
 
   useImperativeHandle(ref ,() => ({onOpen:handleOpen,onClose:handleClose}))
 
