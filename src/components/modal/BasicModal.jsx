@@ -5,7 +5,8 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
 import './BasicModal.css'
-
+import late from '../../../public/lateinbox.jpg'
+import about from '../../../public/aboutdetail.jpg'
 
 const style = {
   position: 'absolute',
@@ -34,7 +35,7 @@ export default function BasicModal  ({data})  {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style} className="box">
-          <img src={data.details.img} alt={data.title} />
+          {data.id === "1" ? <img src={late} alt={data.title} /> : <img src={about} alt={data.title} />}
           <Typography id="modal-modal-title" variant="h6" component="h2">
             <p>{data.details.row1}</p><br />
           </Typography>
