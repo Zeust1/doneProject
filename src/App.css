@@ -71,11 +71,10 @@ a:hover {
 
 .iconuer:hover > .showMenu {
   display: block;
-  backdrop-filter: blur(10px);
   color: #f9ebde;
   position: absolute;
   top: 30px;
-  right: 40px;
+  right: 30px;
   border-radius: 10px 0 10px 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   text-align: center;
