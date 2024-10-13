@@ -1,5 +1,5 @@
 import './Profile.css'
-import userimg from '../../../public/userimg.png'
+import userimg from '../../../public/userImg.png'
 
 const Profile = ({info}) => {
   return (
