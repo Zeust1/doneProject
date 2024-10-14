@@ -7,7 +7,7 @@ import { find } from "lodash";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 
-import Signuppage from "../signuppage/Signuppage";
+
 import Onloading from "../../components/modalonloading/Onloading";
 
 import userapi from "../../api/userapi";
@@ -45,7 +45,6 @@ const Signinpage = ({ setUserLogin }) => {
     e.preventDefault();
     onLoading();
     const data = await userapi();
-    console.log(data)
       if (find(data, formValue)){
         onClose();
         goHome();

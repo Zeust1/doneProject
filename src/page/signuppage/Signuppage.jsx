@@ -38,9 +38,7 @@ const Signuppage = () => {
   
 
   const handleOnSubmit = async (e) => {
-    console.log("1")
     e.preventDefault()
-    console.log(e.target)
     await post(formValue)
     setOnSuccess("success")
     setFormValue(init)

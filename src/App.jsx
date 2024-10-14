@@ -150,8 +150,6 @@ function App() {
               <i className="fa-solid fa-certificate fa-2xl"><p>{`${userLogin.level * 10}`}%</p></i>
             </div>
           }
-
-          {/* {userLogin && <Link to="/profile">Welcome, {userLogin.username}</Link>} */}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
           <span>
