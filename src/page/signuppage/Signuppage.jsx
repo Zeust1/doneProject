@@ -2,19 +2,17 @@ import "./Signuppage.css";
 import { useState } from "react";
 import Alert from '@mui/material/Alert';
 import { useNavigate } from "react-router-dom";
+import { find } from "lodash";
 
 import gift from "../../../public/newgift.svg"
 import gift2 from "../../../public/gift2.svg"
 
 import post from "../../api/post";
+import userapi from "../../api/userapi";
 
 const Signuppage = () => {
 
   const navigate = useNavigate()
-
-  const goBack = () => {
-    navigate("/signin-page"); // Điều hướng về Route cha là Dashboard
-  };
 
   const init = {
     name: "",
@@ -27,6 +25,17 @@ const Signuppage = () => {
     password: ""
   }
 
+
+  const onClose = () => {
+    setOnSuccess("hide")
+    goBack()
+  }
+
+
+  const goBack = () => {
+    navigate("/signin-page"); // Điều hướng về Route cha là Dashboard
+  };
+  
   const [onSuccess, setOnSuccess] = useState("hide")
 
   const [formValue, setFormValue] = useState(init);
@@ -34,19 +43,22 @@ const Signuppage = () => {
   const onChangeForm = (e) => {
     const { name, value } = e.target;
     setFormValue({ ...formValue, [name]: value });
+    setOnSuccess("hide")
   };
   
 
   const handleOnSubmit = async (e) => {
     e.preventDefault()
-    await post(formValue)
-    setOnSuccess("success")
-    setFormValue(init)
-  }
-
-  const onClose = () => {
-  setOnSuccess("hide")
-  goBack()
+    const data = await userapi ()
+    const users = data[0].uniqueUser
+    if(users.includes(formValue.username)){
+      setOnSuccess("warning")
+      return
+    }else {
+      await post(formValue)
+      setOnSuccess("success")
+      setFormValue(init)
+    }
   }
 
   return (
@@ -71,8 +83,11 @@ const Signuppage = () => {
         </div>
       </div>
       <div className={onSuccess} onClick={onClose}>
-        <Alert severity="success">
-        Your account has been created successfully</Alert>
+        <Alert severity={onSuccess}>
+          {onSuccess === "success" ? "Your account has been created successfully"
+          : "Your username already exists! Please choose another username" 
+          }
+        </Alert>
       </div>
       <div className="signupForm">
         <form onSubmit={handleOnSubmit} className="form-signup">

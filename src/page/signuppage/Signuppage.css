@@ -60,6 +60,7 @@
 	&:hover {
 		transform: scale(1.05);
 		box-shadow: 0 5px 15px 10px rgba(255, 215, 18, 0.55);
+        color: rgba(255, 0, 0, 0.6);
 	}
 }
 
@@ -98,7 +99,7 @@
     display: none;
 }
 
-.success {
+.success, .warning {
     cursor: pointer;
     height: 40px;
     margin-top: 24px;

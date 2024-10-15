@@ -16,7 +16,7 @@ import Signinpage from "./page/signinpage/Signinpage";
 import Profile from "./page/profile/Profile";
 import Signuppage from "./page/signuppage/Signuppage";
 import Onloading from "../src/components/modalonloading/Onloading";
-
+import Onpay from "./components/successonpay/Onpay.jsx";
 
 import Menu from "./page/Menu/menu"
 import CartModal from "./components/CartModal/CartModal.jsx";
@@ -243,8 +243,6 @@ function App() {
           }
         />
       </Routes>
-
-
       <CartModal
         open={isCartOpen}
         onClose={toggleCartModal}

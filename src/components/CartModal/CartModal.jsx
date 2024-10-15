@@ -11,6 +11,8 @@ import {
 } from "@mui/material";
 import { Add, Remove } from "@mui/icons-material";
 import CheckoutModal from "../CheckoutModal/CheckoutModal";
+import post from "../../api/post";
+import Onpay from '../successonpay/Onpay'
 
 const CartModal = ({ open, onClose, cartItems, setCartItems ,Level}) => {
   const percent = Level/10
@@ -149,7 +151,6 @@ const CartModal = ({ open, onClose, cartItems, setCartItems ,Level}) => {
         </Box>
       </Modal>
 
-      {/* Checkout Modal */}
       <CheckoutModal
         open={isCheckoutOpen}
         onClose={handleCloseCheckout}
