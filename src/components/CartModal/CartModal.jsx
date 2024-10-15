@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Alert from '@mui/material/Alert';
+
 import {
   Modal,
   Box,
@@ -12,9 +14,10 @@ import {
 import { Add, Remove } from "@mui/icons-material";
 import CheckoutModal from "../CheckoutModal/CheckoutModal";
 import post from "../../api/post";
-import Onpay from '../successonpay/Onpay'
 
-const CartModal = ({ open, onClose, cartItems, setCartItems ,Level}) => {
+
+const CartModal = ({ open, onClose, cartItems, setCartItems ,Level, User}) => {
+  const [pay,setPay] =useState("false")
   const percent = Level/10
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -47,9 +50,17 @@ const CartModal = ({ open, onClose, cartItems, setCartItems ,Level}) => {
     setIsCheckoutOpen(false);
   };
 
+  const handlePaid = () => {
+    post({
+      username: User,
+      bought: totalPrice
+    })
+    setPay("true")
+  }
+
   return (
     <>
-      <Modal open={open} onClose={onClose}>
+      <Modal open={open} onClose={()=> {onClose();setPay("false")}}>
         <Box
           sx={{
             position: "absolute",
@@ -141,21 +152,20 @@ const CartModal = ({ open, onClose, cartItems, setCartItems ,Level}) => {
           </Typography>
 
           <Box display="flex" justifyContent="space-between" mt={2}>
-            <Button variant="contained" color="secondary" onClick={onClose}>
+            <Button variant="contained" color="secondary" onClick={()=> {onClose();setPay("false")}}>
               Đóng
             </Button>
-            <Button variant="contained" color="primary" onClick={handleCheckout}>
+            {pay === "true" && totalPrice > 0 &&
+              <Alert severity="success">
+                Thanh toán thành công
+              </Alert>
+            }
+            <Button variant="contained" color="primary" onClick={handlePaid}>
               Thanh toán
             </Button>
           </Box>
         </Box>
       </Modal>
-
-      <CheckoutModal
-        open={isCheckoutOpen}
-        onClose={handleCloseCheckout}
-        product={selectedProduct}
-      />
     </>
   );
 };
