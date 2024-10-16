@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Alert from '@mui/material/Alert';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Modal,
   Box,
@@ -17,6 +18,7 @@ import post from "../../api/post";
 
 
 const CartModal = ({ open, onClose, cartItems, setCartItems ,Level, User}) => {
+
   const [pay,setPay] =useState("false")
   const percent = Level/10
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
@@ -27,8 +29,10 @@ const CartModal = ({ open, onClose, cartItems, setCartItems ,Level, User}) => {
     0
   );
 
-  const handleRemove = (index) => {
-    setCartItems((prevItems) => prevItems.filter((_, i) => i !== index));
+  const handleRemove = (index , cartItems) => {
+   pay !== "true" ? 
+    setCartItems((prevItems) => prevItems.filter((_, i) => i !== index))
+    : setCartItems([])
   };
 
   const handleQuantityChange = (index, amount) => {
@@ -49,13 +53,31 @@ const CartModal = ({ open, onClose, cartItems, setCartItems ,Level, User}) => {
   const handleCloseCheckout = () => {
     setIsCheckoutOpen(false);
   };
+  const notify = async () => {
+   cartItems.forEach((element) => {
+     post ({
+      username: User,
+      img : element.img,
+      productname: element.name,
+      price: Level === null ? element.price : element.price - (element.price * percent),
+      quantity: element.quantity,
+      bought : element.quantity * (Level === null ? element.price : element.price - (element.price * percent))
+    })
+   });
+  toast("Thanh toán thành công")
+  onClose()
+  setCartItems([])
+};
+
 
   const handlePaid = () => {
-    post({
-      username: User,
-      bought: totalPrice
-    })
-    setPay("true")
+    if(totalPrice > 0) {
+      setPay("true")
+      notify()
+    }else{
+      return
+    }
+
   }
 
   return (
@@ -155,17 +177,13 @@ const CartModal = ({ open, onClose, cartItems, setCartItems ,Level, User}) => {
             <Button variant="contained" color="secondary" onClick={()=> {onClose();setPay("false")}}>
               Đóng
             </Button>
-            {pay === "true" && totalPrice > 0 &&
-              <Alert severity="success">
-                Thanh toán thành công
-              </Alert>
-            }
             <Button variant="contained" color="primary" onClick={handlePaid}>
               Thanh toán
             </Button>
           </Box>
         </Box>
       </Modal>
+      <ToastContainer/>
     </>
   );
 };

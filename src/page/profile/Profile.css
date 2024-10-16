@@ -1,3 +1,10 @@
+.pageinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
 .profile {
     width: 80%;
     margin: 0 auto;
@@ -12,4 +19,39 @@
 .content p {
     width: 100%;
     border-bottom: 1px solid rgba(118, 118, 118, 0.446);
+}
+
+.logs {
+    width: 90%;
+    height: 50vh;
+    margin: 0 auto;
+    text-align: center;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    
+}
+
+th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: white;
+}
+
+table tbody tr td {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.total {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.total h2 {
+    color: brown;
+    text-decoration: underline;
 }

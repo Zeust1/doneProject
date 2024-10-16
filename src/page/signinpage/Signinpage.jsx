@@ -45,7 +45,6 @@ const Signinpage = ({ setUserLogin }) => {
     e.preventDefault();
     onLoading();
     const data = await userapi();
-    console.log(data)
       if (find(data, formValue)){
         onClose();
         goHome();

@@ -20,7 +20,6 @@ const Signuppage = () => {
     phone: "",
     birthday: "",
     email: "",
-    level: "",
     username: "",
     password: ""
   }
@@ -98,7 +97,6 @@ const Signuppage = () => {
             <input type="number" placeholder="CCCD" name="id" value={formValue.id} required autoComplete="new-password" onChange={onChangeForm}/>
             <input type="email" placeholder="Email" name="email" value={formValue.email} required autoComplete="new-password" onChange={onChangeForm}/>
             <input type="tel" placeholder="Sđt" name="phone" value={formValue.phone} required autoComplete="new-password" onChange={onChangeForm}/>
-            <input type="text" placeholder="Level" name="level" value={formValue.level} required autoComplete="new-password" onChange={onChangeForm}/>
             <input type="text" placeholder="Username" name="username" value={formValue.username} required autoComplete="new-password" onChange={onChangeForm}/>
             <input type="password" placeholder="Password" name="password" value={formValue.password} required autoComplete="new-password" onChange={onChangeForm}/>
           </div>

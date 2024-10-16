@@ -43,7 +43,6 @@ function App() {
   const [selectedProduct, setSelectedProduct] = useState(null); 
 
 
-
   let pTag1 = null;
   let pTag2 = null;
 
@@ -82,10 +81,10 @@ function App() {
 
   const signout = async () => {
     onLoading();
-    setUserLogin("");
     const data = await api();
-    navigate("/")
     onClose()
+    setUserLogin("");
+    navigate("/")
   };
 
 
