@@ -27,7 +27,7 @@
 .inp input {
     border-radius: 5px;
     font-size: larger;
-    border: 1px solid;
+    border: 1px solid rgba(0, 0, 0, 0.5);
     outline: none;  
 }
 

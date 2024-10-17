@@ -3,6 +3,8 @@ import { useState } from "react";
 import Alert from '@mui/material/Alert';
 import { useNavigate } from "react-router-dom";
 import { find } from "lodash";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 import gift from "../../../public/newgift.svg"
 import gift2 from "../../../public/gift2.svg"
@@ -92,13 +94,14 @@ const Signuppage = () => {
         <form onSubmit={handleOnSubmit} className="form-signup">
           <h2>Sign Up</h2>
           <div className="inp">
+            <input type="text" placeholder="Tên tài khoản" name="username" value={formValue.username} required autoComplete="new-password" onChange={onChangeForm}/>
+            <input type="password" placeholder="Mật khẩu" name="password" value={formValue.password} required autoComplete="new-password" onChange={onChangeForm}/>
             <input type="text" placeholder="Họ tên" name="name" value={formValue.name} required autoComplete="new-password" onChange={onChangeForm}/>
             <input type="date" placeholder="Năm sinh" name="birthday" value={formValue.birthday} required autoComplete="new-password" onChange={onChangeForm}/>
-            <input type="number" placeholder="CCCD" name="id" value={formValue.id} required autoComplete="new-password" onChange={onChangeForm}/>
-            <input type="email" placeholder="Email" name="email" value={formValue.email} required autoComplete="new-password" onChange={onChangeForm}/>
             <input type="tel" placeholder="Sđt" name="phone" value={formValue.phone} required autoComplete="new-password" onChange={onChangeForm}/>
-            <input type="text" placeholder="Username" name="username" value={formValue.username} required autoComplete="new-password" onChange={onChangeForm}/>
-            <input type="password" placeholder="Password" name="password" value={formValue.password} required autoComplete="new-password" onChange={onChangeForm}/>
+            <input type="email" placeholder="Email" name="email" value={formValue.email} required autoComplete="new-password" onChange={onChangeForm}/>
+            <input type="text" placeholder="CCCD" name="id" value={formValue.id} required autoComplete="new-password" onChange={onChangeForm}/>
+
           </div>
             <button className="btnsignup" type="submit">Sign up</button>
         </form>

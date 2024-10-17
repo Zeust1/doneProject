@@ -13,6 +13,7 @@ import Onloading from "../../components/modalonloading/Onloading";
 import userapi from "../../api/userapi";
 
 const Signinpage = ({ setUserLogin }) => {
+  const [showpass, setShowPass] = useState("password")
   const childRef = useRef();
   const navigate = useNavigate();
   // Hàm để gọi hàm trong component con
@@ -61,6 +62,15 @@ const Signinpage = ({ setUserLogin }) => {
       }
   };
 
+  let showIconPass = null
+
+  if(showpass === "password"){
+    showIconPass = <i className="fa-regular fa-eye" onClick={()=>setShowPass("text")}></i>
+  }else {
+    showIconPass = <i className="fa-regular fa-eye-slash" onClick={()=>setShowPass("password")}></i>
+  }
+
+
   return (
       <div className="signinpage">
         <form className="form" onSubmit={onSignIn}>
@@ -79,7 +89,7 @@ const Signinpage = ({ setUserLogin }) => {
           </div>
           <div className="blockinp">
             <input
-              type="password"
+              type={showpass}
               name="password"
               value={formValue.password}
               autoComplete="new-password"
@@ -89,6 +99,11 @@ const Signinpage = ({ setUserLogin }) => {
             />
             <i className="fa-solid fa-lock fa-xl"></i>
           </div>
+
+          <div className="show-hide-pass">
+            {showIconPass}
+          </div>
+          
           <div className="signup-in">
             <div>
               <Link to="/signup-page">Don't have account</Link>
