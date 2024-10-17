@@ -101,7 +101,6 @@ const Signuppage = () => {
             <input type="tel" placeholder="Sđt" name="phone" value={formValue.phone} required autoComplete="new-password" onChange={onChangeForm}/>
             <input type="email" placeholder="Email" name="email" value={formValue.email} required autoComplete="new-password" onChange={onChangeForm}/>
             <input type="text" placeholder="CCCD" name="id" value={formValue.id} required autoComplete="new-password" onChange={onChangeForm}/>
-
           </div>
             <button className="btnsignup" type="submit">Sign up</button>
         </form>

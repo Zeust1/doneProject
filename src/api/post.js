@@ -1,6 +1,6 @@
 const post = async (data) => {
   const api =
-    "https://script.google.com/macros/s/AKfycbzbnmX8E-pMtOVwCHxlZPnMEPlvscWd7O7YehWZTUoqp1odcnLxArxPzj63zfWq1-3_/exec";
+    "https://script.google.com/macros/s/AKfycbxpQoohOywiBida4LlUnld6bz_W2k-F8nyznjuzVS0GTyB6XzHkERCorYIFUqd2Z8Fi/exec";
   await fetch(api, {
     method: "POST",
     headers: {
